@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/saltbo/gopkg/ginutil"
+	"github.com/saltbo/zpan/internal/pkg/middleware"
 
 	_ "github.com/saltbo/zpan/internal/docs"
 )
@@ -27,6 +28,8 @@ import (
 
 func SetupRoutes(ge *gin.Engine) {
 	ginutil.SetupSwagger(ge)
+
+	ge.Use(middleware.Cors())
 
 	apiRouter := ge.Group("/api")
 	ginutil.SetupResource(apiRouter,
